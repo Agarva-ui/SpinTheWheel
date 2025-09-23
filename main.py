@@ -14,14 +14,12 @@ from flask_socketio import SocketIO, emit
 # Flask App & DB Setup
 # ------------------------------
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "AnwarSecretKey"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 socketio = SocketIO(app)
 
 # Database
-instance_path = os.path.join(os.path.dirname(__file__), "instance")
-os.makedirs(instance_path, exist_ok=True)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(instance_path, "prize.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///prize.db")
 db = SQLAlchemy(app)
 Bootstrap5(app)
 
@@ -167,4 +165,4 @@ def delete_all():
 # ------------------------------
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True, port=5001)
+    socketio.run(app, debug=False)
