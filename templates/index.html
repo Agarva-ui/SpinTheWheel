@@ -1,0 +1,44 @@
+{% from "bootstrap5/form.html" import render_form %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Spin the Wheel</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="popup">
+      <div class="popup-content">
+        <p id="popup-text"></p>
+        <button id="close-popup">OK</button>
+      </div>
+    </div>
+    <div id="main-layout">
+      {% if user_count == 0 and not is_authenticated %}
+      <form method="POST">
+        {{ render_form(form, novalidate=True, button_map={"submit": "primary"})
+        }}
+      </form>
+      {% endif %}
+      <div id="spin_the_wheel">
+        <canvas id="wheel" width="550" height="550"></canvas>
+        <div id="spinButton">SPIN</div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+      const sectors = [
+          {% for prize in prizes %}
+              { color: "{{ prize.color }}", text: "#fff", label: "{{ prize.label }}" }{{ "," if not loop.last }}
+          {% endfor %}
+      ];
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

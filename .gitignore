@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Flask instance folder (holds secrets, uploads, etc.)
+instance/
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Byte-compiled / cache
+*.egg
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# Databases (if you use SQLite)
+*.sqlite3
+*.db
+
+# Node (if you’re mixing with frontend tools)
+node_modules/
+
+# Coverage / testing
+.coverage
+.tox/
+htmlcov/
+.pytest_cache/
+
+# Environment files
+*.env
+*.bak
