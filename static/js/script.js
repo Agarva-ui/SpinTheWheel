@@ -10,6 +10,7 @@ if (!sectors || sectors.length === 0) {
   console.warn("No prizes to draw!");
 } else {
   const arc = TAU / sectors.length;
+  sectors.forEach(drawSector);
 }
 
 // Keep the drawing function
@@ -30,9 +31,6 @@ ctx.font = "bold 30px 'Lato', sans-serif";
 ctx.fillText(sector.label, rad - 10, 10);
 ctx.restore();
 }
-
-// Draw the wheel once on load
-sectors.forEach(drawSector);
 
 // Keep the popup logic
 const popup = document.getElementById("popup");
