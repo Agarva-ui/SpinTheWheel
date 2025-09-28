@@ -6,7 +6,11 @@ const dia = ctx.canvas.width;
 const rad = dia / 2;
 const PI = Math.PI;
 const TAU = 2 * PI;
-const arc = TAU / sectors.length;
+if (!sectors || sectors.length === 0) {
+  console.warn("No prizes to draw!");
+} else {
+  const arc = TAU / sectors.length;
+}
 
 // Keep the drawing function
 function drawSector(sector, i) {
