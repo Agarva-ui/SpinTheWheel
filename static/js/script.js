@@ -6,12 +6,7 @@ const dia = ctx.canvas.width;
 const rad = dia / 2;
 const PI = Math.PI;
 const TAU = 2 * PI;
-if (!sectors || sectors.length === 0) {
-  console.warn("No prizes to draw!");
-} else {
-  const arc = TAU / sectors.length;
-  sectors.forEach(drawSector);
-}
+const arc = TAU / sectors.length;
 
 // Keep the drawing function
 function drawSector(sector, i) {
@@ -32,6 +27,7 @@ ctx.fillText(sector.label, rad - 10, 10);
 ctx.restore();
 }
 
+ sectors.forEach(drawSector);
 // Keep the popup logic
 const popup = document.getElementById("popup");
 const popupText = document.getElementById("popup-text");
