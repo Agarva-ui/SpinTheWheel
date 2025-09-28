@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.pool import NullPool
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
@@ -24,7 +25,7 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    'poolclass': 'sqlalchemy.pool.NullPool'
+    'poolclass': NullPool # <--- CORRECTED
 }
 db = SQLAlchemy(app)
 Bootstrap5(app)
