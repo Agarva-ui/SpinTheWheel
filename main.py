@@ -15,7 +15,7 @@ from flask_socketio import SocketIO, emit
 # Flask App & DB Setup
 # ------------------------------
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "AnwrSecretKey"
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -172,4 +172,4 @@ def delete_all():
 # ------------------------------
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=False)
