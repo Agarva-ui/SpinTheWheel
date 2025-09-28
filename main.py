@@ -135,6 +135,11 @@ def login():
 
 @socketio.on("spin")
 def handle_spin():
+    if not current_user.is_authenticated:
+        return
+    prizes = Prize.query.all()
+    if not prizes:
+        return
     chosen = random.choice(prizes)
     index = prizes.index(chosen)  # position in the sectors list
     emit("wheelSpin", {
