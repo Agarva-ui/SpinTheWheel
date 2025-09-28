@@ -23,6 +23,9 @@ uri = os.environ.get("DB_URI", "sqlite:///prize.db")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'poolclass': 'sqlalchemy.pool.NullPool'
+}
 db = SQLAlchemy(app)
 Bootstrap5(app)
 
