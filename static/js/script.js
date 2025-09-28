@@ -1,3 +1,35 @@
+const rainContainer = document.getElementById("rain-container");
+const rainImages = [
+  "../static/assets/bgl_better.webp",
+  "../static/assets/bgl_better.webp",
+  "../static/assets/bgl_better.webp",
+  "../static/assets/bgl_better.webp"
+]; // add as many as you like
+
+function createRain() {
+  const img = document.createElement("img");
+  img.src = rainImages[Math.floor(Math.random() * rainImages.length)];
+  img.classList.add("rain-image");
+
+  // random horizontal position
+  img.style.left = Math.random() * window.innerWidth + "px";
+  // random animation duration
+  img.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  // random size
+  const size = Math.random() * 40 + 30;
+  img.style.width = size + "px";
+  img.style.height = size + "px";
+
+  rainContainer.appendChild(img);
+
+  // remove the element after animation ends
+  img.addEventListener("animationend", () => {
+    img.remove();
+  });
+}
+
+// spawn new rain every 100ms
+setInterval(createRain, 100);
 
 
 
