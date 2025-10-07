@@ -15,7 +15,7 @@ from flask_socketio import SocketIO, emit
 # Flask App & DB Setup
 # ------------------------------
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") 
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 

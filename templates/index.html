@@ -4,6 +4,7 @@
   <head>
     <title>Welcome to Spin the Wheel</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="{{url_for('static',filename='css/style.css')}}"
@@ -18,32 +19,6 @@
 
   <body>
     <div id="rain-container"></div>
-    <div id="sidebar">
-      <div id="user-section">
-        <div id="user-title">
-          <img
-            src="{{ url_for('static', filename='assets/instagram_icon.webp') }}"
-            alt="Instagram Logo"
-          />
-          <a
-            id="user-name"
-            href="https://www.instagram.com/r7em.gt"
-            target="_blank"
-            >R7em.gt</a>
-        </div>
-
-        <ul id="rules-list">
-          <h3>وصف الفعالية :</h3>
-          <p></p>
-          <h3>قوانين السحب :</h3>
-          <li>القاعدة ١: يمكن الدوران مرة واحدة يوميًا</li>
-          <li>القاعدة ٢: لا تغش</li>
-          <li>القاعدة ٣: تابع حسابنا على إنستجرام</li>
-          <li>القاعدة ٤: سيتم الإعلان عن الفائزين أسبوعيًا</li>
-          <!-- أضف المزيد من القواعد هنا -->
-        </ul>
-      </div>
-    </div>
 
     <div id="popup">
       <div class="popup-content">
