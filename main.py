@@ -15,7 +15,7 @@ from flask_socketio import SocketIO, emit
 # Flask App & DB Setup
 # ------------------------------
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") 
+app.config['SECRET_KEY'] = "AnwarsSecretKey"
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -152,6 +152,10 @@ def handle_spin():
         "index": index
     }, broadcast=True)
 
+@socketio.on('send_message') 
+def handle_message(data):
+    emit('receive_message', data, broadcast=True)
+
 @app.route("/logout")
 @login_required
 def logout():
@@ -172,4 +176,4 @@ def delete_all():
 # ------------------------------
 
 if __name__ == "__main__":
-    socketio.run(app, debug=False)
+    socketio.run(app, host="0.0.0.0", port=5001,debug=True)

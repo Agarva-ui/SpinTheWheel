@@ -4,7 +4,11 @@
   <head>
     <title>Welcome to Spin the Wheel</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+
     <link
       rel="stylesheet"
       href="{{url_for('static',filename='css/style.css')}}"
@@ -13,8 +17,10 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -36,6 +42,15 @@
       <div id="spin_the_wheel">
         <canvas id="wheel" width="550" height="550"></canvas>
         <div id="spinButton">SPIN</div>
+      </div>
+    </div>
+
+    <div id="chat-container">
+      <div id="chat-header">Live Chat</div>
+      <div id="chat"></div>
+      <div id="chat-input">
+        <input id="message" placeholder="Message" />
+        <button id="send">Send</button>
       </div>
     </div>
 

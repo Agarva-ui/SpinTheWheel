@@ -102,3 +102,29 @@ setTimeout(() => {
 }, 4000);
 });
 
+// Chat functionality
+const chat = document.getElementById('chat');
+const messageInput = document.getElementById('message');
+const sendBtn = document.getElementById('send');
+
+sendBtn.onclick = () => {
+  const message = messageInput.value.trim();
+  if (!message) return;
+
+  socket.emit('send_message', { message });
+  messageInput.value = '';
+};
+
+socket.on('receive_message', (data) => {
+  const msgElem = document.createElement('div');
+  msgElem.textContent = data.message;
+  chat.appendChild(msgElem);
+  chat.scrollTop = chat.scrollHeight; // auto-scroll to bottom
+});
+
+messageInput.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') {
+    e.preventDefault(); // prevent newline in input
+    sendBtn.click();    // trigger send button
+  }
+});

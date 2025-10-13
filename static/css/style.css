@@ -251,6 +251,78 @@ body {
   background: #3333ff;
 }
 
+/* Chat container - desktop and tablet */
+#chat-container {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #222 0%, #3333ff 100%);
+  border: 4px solid #fff700;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 24px 4px #00fff7aa, 0 0 0 2px #fff700;
+  font-family: 'Press Start 2P', cursive;
+  z-index: 10;
+}
+
+/* Scrollable chat messages */
+#chat {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #111;
+  color: #fff700;
+  font-size: 0.8rem;
+  text-shadow: 1px 1px 0 #000;
+}
+#chat div {
+  font-family: 'Cairo', 'Arial', sans-serif;
+  font-size: 1rem;
+  text-align: right;
+  margin-bottom: 6px;
+  background: rgba(255, 0, 204, 0.2);
+  padding: 4px 8px;
+  border-radius: 8px 8px 0 8px;
+}
+
+/* Inputs and send button */
+#chat-input {
+  display: flex;
+  border-top: 2px solid #fff700;
+  background: #222;
+}
+#chat-input input#message {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  background: #111;
+  color: #fff700;
+}
+#chat-input button {
+  padding: 0 12px;
+  background: #ff00cc;
+  color: #fff700;
+  border: none;
+  cursor: pointer;
+}
+
+/* Chat header */
+#chat-header { 
+  background: #ff00cc; 
+  text-align: center; 
+  color: #fff700; 
+  padding: 8px 0; 
+  text-shadow: 2px 2px 0 #000; 
+  font-size: 0.9rem; 
+  letter-spacing: 1px; 
+}
+
+
 
 /* RESPONSIVE STYLES */
 
@@ -315,5 +387,12 @@ body {
   }
   #popup-text {
     font-size: 1.1rem;
+  }
+  /* Stack the chat below the wheel */
+  #chat-container {
+    position: static;
+    transform: none;
+    margin-top: 5%;
+    height: 200px;
   }
 }
