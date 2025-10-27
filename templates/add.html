@@ -10,8 +10,13 @@
   <body>
     <div id="add-prize-section">
       <form method="POST">
-        {{ render_form(form, novalidate=True, button_map={"submit": "primary"})
-        }}
+        {{ render_form(NormalForm, novalidate=True, button_map={"submit":
+        "primary"}) }}
+      </form>
+
+      <form method="POST">
+        {{ render_form(VipForm, novalidate=True, button_map={"submit":
+        "warning"}) }}
       </form>
     </div>
   </body>
