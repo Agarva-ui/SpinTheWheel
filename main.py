@@ -134,7 +134,9 @@ class Messages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(500), nullable=False)
 
-
+class Messages_vip(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(500), nullable=False)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -328,7 +330,7 @@ def handle_message_vip(data):
     filtered_msg = filter_message(data['message'], mask=False)
     if not filtered_msg.strip():
         return
-    db.session.add(Messages(message=filtered_msg))
+    db.session.add(Messages_vip(message=filtered_msg))
     db.session.commit()
     data['message'] = filtered_msg
     emit('receive_message_vip', data, broadcast=True)
