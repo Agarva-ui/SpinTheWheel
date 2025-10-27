@@ -48,17 +48,23 @@ function drawSector(sector, i) {
   const ang = arc * i;
   ctx.save();
   ctx.beginPath();
-  ctx.fillStyle = sector.color;
   ctx.moveTo(rad, rad);
   ctx.arc(rad, rad, rad, ang, ang + arc);
   ctx.lineTo(rad, rad);
+
+  ctx.fillStyle = sector.color;
   ctx.fill();
 
-  // Draw label
+  // 🟡 Add border here
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = "#f0e68c";
+  ctx.stroke();
+
+  // Draw text
   ctx.translate(rad, rad);
   ctx.rotate(ang + arc / 2);
   ctx.textAlign = "right";
-  ctx.fillStyle = sector.text;
+  ctx.fillStyle = sector.text || "#000";
   ctx.font = "bold 30px 'Lato', sans-serif";
   ctx.fillText(sector.label, rad - 10, 10);
   ctx.restore();
