@@ -179,7 +179,7 @@ def Home():
 
 @app.route("/VIP", methods=["GET", "POST"])
 def VIP():
-    messages = Messages.query.all()
+    messages = Messages_vip.query.all()
     prizes = VipPrize.query.all()
     return render_template("vip.html", prizes=prizes,
                            is_authenticated=current_user.is_authenticated,
