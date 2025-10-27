@@ -270,7 +270,7 @@ def delete_all():
     db.session.commit()
     return redirect(url_for("Home"))
 
-@app.route("/delete_all_vip")
+@app.route("/VIP/delete_all")
 @login_required
 def delete_all_vip():
     VipPrize.query.delete()
@@ -284,7 +284,7 @@ def delete_messages():
     db.session.commit()
     return redirect(url_for("Home"))
 
-@app.route("/delete_messages_vip")
+@app.route("/VIP/delete_messages")
 @login_required
 def delete_messages_vip():
     Messages_vip.query.delete()
