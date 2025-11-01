@@ -70,6 +70,7 @@ function drawSector(sector, i) {
   ctx.restore();
 }
 
+
 // Draw the full wheel
 sectors.forEach(drawSector);
 

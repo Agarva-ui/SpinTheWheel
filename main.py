@@ -78,7 +78,7 @@ theme_colors = [
 # Flask App Setup
 # ============================================================
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 Bootstrap5(app)
@@ -137,6 +137,10 @@ class Messages(db.Model):
 class Messages_vip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(500), nullable=False)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3b91560 (add admin section)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -161,15 +165,19 @@ class RegisterForm(FlaskForm):
 
 
 class PrizeForm(FlaskForm):
-    label = StringField("Prize Label", validators=[DataRequired()])
-    submit = SubmitField("Add Prize")
+    label = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Add Customer")
 
+class DeleteUserForm(FlaskForm):
+    username = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Delete Customer")
 
 # ============================================================
 # Routes
 # ============================================================
 @app.route("/", methods=["GET", "POST"])
 def Home():
+<<<<<<< HEAD
     messages = Messages.query.all()
     prizes = Prize.query.all()
     return render_template("index.html", prizes=prizes,
@@ -189,26 +197,52 @@ def VIP():
 @app.route("/add_prize", methods=["GET", "POST"])
 @login_required
 def add_prize():
+=======
+>>>>>>> 3b91560 (add admin section)
     NormalForm = PrizeForm(prefix="normal")
     VipForm = PrizeForm(prefix="vip")
+    DeleteForm = DeleteUserForm()
 
-    # Normal prizes
+     # Normal prizes
     if NormalForm.validate_on_submit() and NormalForm.submit.data:
         label = NormalForm.label.data
         color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
         db.session.add(Prize(label=label, color=color))
         db.session.commit()
         return redirect(url_for("Home"))
-
-    # VIP prizes
+    
+     # VIP prizes
     if VipForm.validate_on_submit() and VipForm.submit.data:
         label = VipForm.label.data
         color = random.choice(theme_colors)
         db.session.add(VipPrize(label=label, color=color))
         db.session.commit()
         return redirect(url_for("VIP"))
+    
+    # Delete user
+    if DeleteForm.validate_on_submit():
+        username = DeleteForm.username.data.strip()
+        deleted = Prize.query.filter_by(label=username).delete()
+        db.session.commit()
 
-    return render_template("add.html", NormalForm=NormalForm, VipForm=VipForm)
+        return redirect(url_for("Home"))
+    messages = Messages.query.all()
+    prizes = Prize.query.all()
+    return render_template("index.html", prizes=prizes,
+                           is_authenticated=current_user.is_authenticated,
+                           messages=messages,
+                           NormalForm=NormalForm, 
+                           VipForm=VipForm,
+                           DeleteUserForm=DeleteForm)
+
+
+@app.route("/VIP", methods=["GET", "POST"])
+def VIP():
+    messages = Messages_vip.query.all()
+    prizes = VipPrize.query.all()
+    return render_template("vip.html", prizes=prizes,
+                           is_authenticated=current_user.is_authenticated,
+                           messages=messages)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -290,7 +324,10 @@ def delete_messages_vip():
     Messages_vip.query.delete()
     db.session.commit()
     return redirect(url_for("VIP"))
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b91560 (add admin section)
 
 # ============================================================
 # Socket.IO Events

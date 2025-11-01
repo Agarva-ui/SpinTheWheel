@@ -46,6 +46,46 @@ body {
   }
 }
 
+/* Container holding both the wheel and admin panel */
+#wheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; /* space between the wheel and the panel */
+  flex-wrap: wrap; /* allows stacking on smaller screens */
+}
+
+/* Wheel itself */
+#wheel {
+  flex: 0 0 auto;
+}
+
+/* Admin panel */
+#admin-panel {
+  position: fixed; /* stays visible even if you scroll */
+  top: 50%;
+  left: 40px; /* distance from the left edge */
+  transform: translateY(-50%);
+  width: 250px; /* adjust width as you like */
+  background: #ffffffd9; /* semi-transparent white */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+/* Responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  #admin-panel {
+    position: static;
+    transform: none;
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
+
 /* Popup - No changes needed in base styles */
 #popup {
   position: fixed;
