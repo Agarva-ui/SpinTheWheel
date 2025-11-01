@@ -137,10 +137,7 @@ class Messages(db.Model):
 class Messages_vip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(500), nullable=False)
-<<<<<<< HEAD
-=======
 
->>>>>>> 3b91560 (add admin section)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -177,28 +174,6 @@ class DeleteUserForm(FlaskForm):
 # ============================================================
 @app.route("/", methods=["GET", "POST"])
 def Home():
-<<<<<<< HEAD
-    messages = Messages.query.all()
-    prizes = Prize.query.all()
-    return render_template("index.html", prizes=prizes,
-                           is_authenticated=current_user.is_authenticated,
-                           messages=messages)
-
-
-@app.route("/VIP", methods=["GET", "POST"])
-def VIP():
-    messages = Messages_vip.query.all()
-    prizes = VipPrize.query.all()
-    return render_template("vip.html", prizes=prizes,
-                           is_authenticated=current_user.is_authenticated,
-                           messages=messages)
-
-
-@app.route("/add_prize", methods=["GET", "POST"])
-@login_required
-def add_prize():
-=======
->>>>>>> 3b91560 (add admin section)
     NormalForm = PrizeForm(prefix="normal")
     VipForm = PrizeForm(prefix="vip")
     DeleteForm = DeleteUserForm()
@@ -324,10 +299,6 @@ def delete_messages_vip():
     Messages_vip.query.delete()
     db.session.commit()
     return redirect(url_for("VIP"))
-<<<<<<< HEAD
-
-=======
->>>>>>> 3b91560 (add admin section)
 
 # ============================================================
 # Socket.IO Events
@@ -380,7 +351,7 @@ def handle_message_vip(data):
     filtered_msg = filter_message(data['message'], mask=False)
     if not filtered_msg.strip():
         return
-    db.session.add(Messages_vip(message=filtered_msg))
+    db.session.add(Messages(message=filtered_msg))
     db.session.commit()
     data['message'] = filtered_msg
     emit('receive_message_vip', data, broadcast=True)
