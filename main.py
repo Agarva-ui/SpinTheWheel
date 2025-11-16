@@ -28,7 +28,7 @@ SWEAR_WORDS = [
     "mokhannath", "douche", "bitch", "whore", "slut", "damn", "fuck", "shit",
     "dick", "crap", "piss", "ass", "mom", "كس", "زب", "نيك", "طيز", "شرموط",
     "لعنة", "قحبة", "خرا", "متناك", "مخنث", "مومس", "هرم", "كلب", "كلبة",
-    "شرموط", "ام", "اب", "والد"
+    "شرموط", "والد"
 ]
 
 SWEAR_WORDS = sorted(set(SWEAR_WORDS), key=lambda w: -len(w))
