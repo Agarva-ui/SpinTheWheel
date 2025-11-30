@@ -104,10 +104,10 @@ socket.on("wheelSpin_vip", (data) => {
 
   // Calculate target rotation
   const targetAngle = (TAU / sectors.length) * (sectors.length - targetIndex) - (arc / 2);
-  const rotationAmount = 5 * TAU + targetAngle; // 5 full spins
+  const rotationAmount = 8 * TAU + targetAngle; // 5 full spins
 
   // Animate rotation
-  ctx.canvas.style.transition = "transform 4s ease-out";
+  ctx.canvas.style.transition = "transform 12s cubic-bezier(0.2, 0.8, 0.2, 1)";
   ctx.canvas.style.transform = `rotate(${rotationAmount}rad)`;
 
   // Show popup after animation
@@ -122,7 +122,7 @@ socket.on("wheelSpin_vip", (data) => {
       const resetRotation = rotationAmount % TAU;
       ctx.canvas.style.transform = `rotate(${resetRotation}rad)`;
     }, 500);
-  }, 4000);
+  }, 12000);
 });
 
 
