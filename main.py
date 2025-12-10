@@ -174,9 +174,17 @@ class DeleteUserForm(FlaskForm):
 # ============================================================
 @app.route("/", methods=["GET", "POST"])
 def Home():
+    print(chosen_prize)
     NormalForm = PrizeForm(prefix="normal")
     VipForm = PrizeForm(prefix="vip")
-    DeleteForm = DeleteUserForm()
+    DeleteForm = DeleteUserForm(prefix="delete normal")
+    VIPDeleteForm = DeleteUserForm(prefix="delete vip")
+
+    NormalForm.label.label.text = "Normal Name"
+    VipForm.label.label.text = "VIP Name"
+    DeleteForm.username.label.text = "Delete Normal"
+    VIPDeleteForm.username.label.text = "Delete VIP"
+
 
      # Normal prizes
     if NormalForm.validate_on_submit() and NormalForm.submit.data:
@@ -195,12 +203,19 @@ def Home():
         return redirect(url_for("VIP"))
     
     # Delete user
-    if DeleteForm.validate_on_submit():
+    if DeleteForm.validate_on_submit()  and DeleteForm.submit.data:
         username = DeleteForm.username.data.strip()
-        deleted = Prize.query.filter_by(label=username).delete()
+        Prize.query.filter_by(label=username).delete()
         db.session.commit()
 
         return redirect(url_for("Home"))
+    
+    if VIPDeleteForm.validate_on_submit()  and VIPDeleteForm.submit.data:
+        username = VIPDeleteForm.username.data.strip()
+        VipPrize.query.filter_by(label=username).delete()
+        db.session.commit()
+
+        return redirect(url_for("VIP"))
     messages = Messages.query.all()
     prizes = Prize.query.all()
     return render_template("index.html", prizes=prizes,
@@ -208,7 +223,8 @@ def Home():
                            messages=messages,
                            NormalForm=NormalForm, 
                            VipForm=VipForm,
-                           DeleteUserForm=DeleteForm)
+                           DeleteUserForm=DeleteForm,
+                           DeleteVipForm=VIPDeleteForm)
 
 
 @app.route("/VIP", methods=["GET", "POST"])
