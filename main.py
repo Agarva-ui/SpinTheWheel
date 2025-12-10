@@ -174,7 +174,6 @@ class DeleteUserForm(FlaskForm):
 # ============================================================
 @app.route("/", methods=["GET", "POST"])
 def Home():
-    print(chosen_prize)
     NormalForm = PrizeForm(prefix="normal")
     VipForm = PrizeForm(prefix="vip")
     DeleteForm = DeleteUserForm(prefix="delete normal")
